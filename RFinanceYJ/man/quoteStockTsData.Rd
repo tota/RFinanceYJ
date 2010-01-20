@@ -2,10 +2,10 @@
 \alias{quoteStockTsData}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+ 株価時系列データの取得
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+   株価時系列データの取得
 }
 \usage{
 quoteStockTsData(x, since = NULL)
@@ -13,10 +13,10 @@ quoteStockTsData(x, since = NULL)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-%%     ~~Describe \code{x} here~~
+    [銘柄コード].[市場拡張子] 例) 4689.t
 }
   \item{since}{
-%%     ~~Describe \code{since} here~~
+    取得開始日。未実装
 }
 }
 \details{
