@@ -2,7 +2,7 @@ quoteStockTsData <-
 function( x, since=NULL){
   stock.data <- data.frame(NULL)
   quote.url <- paste('http://table.yahoo.co.jp/t?s=', x)
-  try( r <- xmlRoot(htmlTreeParse(quote.url, error=NULL)) , TRUE)
+  try( r <- xmlRoot(htmlTreeParse(quote.url)) , TRUE)
   quote.table <- r[[2]][[1]][[1]][[16]][[1]][[1]][[1]][[4]][[1]][[1]][[1]]
   end <- xmlSize(quote.table)
 
