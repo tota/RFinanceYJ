@@ -2,7 +2,7 @@ quoteStockTsData <-
 function( x, since=NULL){
   stock.data <- data.frame(NULL)
   quote.url <- paste('http://table.yahoo.co.jp/t?s=', x)
-  try( r <- xmlRoot(htmlTreeParse(quote.url)) )
+  try( r <- xmlRoot(htmlTreeParse(quote.url, error=NULL)) , TRUE)
   quote.table <- r[[2]][[1]][[1]][[16]][[1]][[1]][[1]][[4]][[1]][[1]][[1]]
   end <- xmlSize(quote.table)
 
@@ -10,7 +10,7 @@ function( x, since=NULL){
     tmp <- quote.table[[i]]
     d <- gsub("^([0-9]{4})([^0-9]+)([0-9]{1,2})([^0-9]+)([0-9]{1,2})([^0-9]+)",
               "\\1-\\3-\\5",
-              xmlValue(tmp[[1]]))
+              iconv(xmlValue(tmp[[1]]), "EUC-JP", "UTF-8", ""))
     tmp.data <-
       data.frame(date=as.POSIXct(d),
                  open=gsub("[^0-9]", "", xmlValue(tmp[[2]])),
