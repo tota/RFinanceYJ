@@ -27,6 +27,6 @@ function( x, since=NULL){
   stock.data$close <- as.character(stock.data$close)
   stock.data$volume <- as.character(stock.data$volume)
   
-  stock.data
+  stock.data[order(stock.data$date),]
 }
 
