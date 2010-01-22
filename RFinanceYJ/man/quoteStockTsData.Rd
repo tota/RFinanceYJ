@@ -13,11 +13,11 @@ quoteStockTsData(x, since = NULL)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-    [銘柄コード].[市場拡張子] 例) 4689.t
+    <stock_code>.<market> ex: 4689.t
 }
   \item{since}{
-    取得開始日。未実装
-}
+    Unmounting
+  }
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
