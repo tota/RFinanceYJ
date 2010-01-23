@@ -1,9 +1,16 @@
 quoteStockTsData <-
 function( x, since=NULL){
+  r <- NULL
+  quote.table <- NULL
   stock.data <- data.frame(NULL)
   quote.url <- paste('http://table.yahoo.co.jp/t?s=', x)
+
   try( r <- xmlRoot(htmlTreeParse(quote.url, error=xmlErrorCumulator(immediate=F))) , TRUE)
-  quote.table <- r[[2]][[1]][[1]][[16]][[1]][[1]][[1]][[4]][[1]][[1]][[1]]
+  if( is.null(r) ) stop(paste("Can not access :", x))
+
+  try( quote.table <- r[[2]][[1]][[1]][[16]][[1]][[1]][[1]][[4]][[1]][[1]][[1]], TRUE )
+  if( is.null(quote.table) ) stop(paste("Can not quote :", x))
+
   end <- xmlSize(quote.table)
 
   for(i in 2:end){
