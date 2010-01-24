@@ -34,5 +34,5 @@ Yohei Sato <yokkuns@tkul.jp>
 ~~ \code{\link[<pkg>:<pkg>-package]{<pkg>}} ~~
 }
 \examples{
-~~ simple examples of the most important functions ~~
+stock <- quoteStockTsData('4689.t')
 }
