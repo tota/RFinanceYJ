@@ -1,9 +1,10 @@
 quoteStockTsData <-
-function( x, since=NULL){
+function( x, since=NULL, start_num=0){
   r <- NULL
   quote.table <- NULL
   stock.data <- data.frame(NULL)
-  quote.url <- paste('http://table.yahoo.co.jp/t?s=', x)
+  start <- (gsub("([0-9]{4,4})-([0-9]{2,2})-([0-9]{2,2})","&c=\\1&a=\\2&b=\\3",since))
+  quote.url <- paste('http://table.yahoo.co.jp/t?s=',x,start,'&y=',start_num)
 
   try( r <- xmlRoot(htmlTreeParse(quote.url, error=xmlErrorCumulator(immediate=F))) , TRUE)
   if( is.null(r) ) stop(paste("Can not access :", x))
