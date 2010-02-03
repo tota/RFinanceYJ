@@ -2,10 +2,10 @@
 \alias{quoteStockTsData}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
- 株価時系列データの取得
+    quote Japanese stock market from Yahoo!-finance-Japan
 }
 \description{
-   株価時系列データの取得
+    quote Japanese stock market from Yahoo!-finance-Japan
 }
 \usage{
 quoteStockTsData(x, since = NULL)
@@ -16,7 +16,7 @@ quoteStockTsData(x, since = NULL)
     <stock_code>.<market> ex: 4689.t
 }
   \item{since}{
-    Unmounting
+    'YYYY-MM-DD' ex:'2009-01-01'
   }
 }
 \details{
