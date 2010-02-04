@@ -1,10 +1,11 @@
 Package: RFinanceYJ
 Type: Package
 Title: RFinanceYJ
-Version: 0.0.5
+Version: 0.0.6
 Date: 2010-01-21
-Author: Yohei Sato
+Author: Yohei Sato, Nobuaki Oshiro
 Maintainer: Yohei Sato <yokkuns@tkul.jp>
-Description: More about what it does (maybe more than one line)
+Description: Japanese stock market from Yahoo!-finance-Japan
 License: New BSD License
 LazyLoad: yes
+Depends: XML

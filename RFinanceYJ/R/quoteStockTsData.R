@@ -1,6 +1,5 @@
 quoteStockTsData <-
 function( x, since=NULL, start.num=0){
-  if( ! isTRUE( grep("XML", search()) ) ) library("XML")
   r <- NULL
   result.num <- 51
   quote.table.list <- list(NULL)
