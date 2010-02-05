@@ -14,7 +14,7 @@ Package: \tab RFinanceYJ\cr
 Type: \tab Package\cr
 Version: \tab 0.0.6\cr
 Date: \tab 2010-01-23\cr
-License: \tab New BSD License\cr
+License: \tab BSD\cr
 LazyLoad: \tab yes\cr
 }
 }
