@@ -19,6 +19,8 @@ function( x, since=NULL, start.num=0){
 
     for(i in 2:end){
       tmp <- quote.table[[i]]
+      if( xmlSize(tmp) < 5) next
+      
       d <- gsub("^([0-9]{4})([^0-9]+)([0-9]{1,2})([^0-9]+)([0-9]{1,2})([^0-9]+)",
                 "\\1-\\3-\\5",
                 iconv(xmlValue(tmp[[1]]), "EUC-JP", "UTF-8", ""))
