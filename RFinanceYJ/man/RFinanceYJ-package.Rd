@@ -12,7 +12,7 @@ Japanese stock market from Yahoo!-finance-Japan
 \tabular{ll}{
 Package: \tab RFinanceYJ\cr
 Type: \tab Package\cr
-Version: \tab 0.0.6\cr
+Version: \tab 0.0.8\cr
 Date: \tab 2010-01-23\cr
 License: \tab BSD\cr
 LazyLoad: \tab yes\cr
@@ -26,7 +26,7 @@ Yohei Sato <yokkuns@tkul.jp>
 
 \keyword{ package }
 \seealso{
-package::XML
+XML
 }
 \examples{
 stock <- quoteStockTsData('4689.t')
