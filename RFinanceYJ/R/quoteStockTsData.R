@@ -7,7 +7,7 @@ function( x, since=NULL, start.num=0){
   stock.data <- data.frame(NULL)
   start <- (gsub("([0-9]{4,4})-([0-9]{2,2})-([0-9]{2,2})","&c=\\1&a=\\2&b=\\3",since))
 
-  while( result.num == 51 ){
+  while( result.num >= 51 ){
     quote.url <- paste('http://table.yahoo.co.jp/t?s=',x,start,'&y=',start.num, sep="")
     try( r <- xmlRoot(htmlTreeParse(quote.url, error=xmlErrorCumulator(immediate=F))) , TRUE)
     if( is.null(r) ) stop(paste("Can not access :", quote.url))
