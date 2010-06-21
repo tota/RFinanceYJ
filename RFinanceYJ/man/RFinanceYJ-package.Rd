@@ -12,7 +12,7 @@ Japanese stock market from Yahoo!-finance-Japan
 \tabular{ll}{
 Package: \tab RFinanceYJ\cr
 Type: \tab Package\cr
-Version: \tab 0.0.9\cr
+Version: \tab 0.1.0\cr
 Date: \tab 2010-01-23\cr
 License: \tab BSD\cr
 LazyLoad: \tab yes\cr

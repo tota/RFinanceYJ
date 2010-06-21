@@ -8,7 +8,7 @@
     quote Japanese stock market from Yahoo!-finance-Japan
 }
 \usage{
-quoteStockTsData(x, since = NULL, start.num = 0 )
+quoteStockTsData(x, since = NULL, start.num = 0,date.end=NULL,time.interval='daily' )
 }
 
 \arguments{
@@ -20,6 +20,12 @@ quoteStockTsData(x, since = NULL, start.num = 0 )
   }
   \item{start.num}{
     offset.  ex:50
+  }
+  \item{date.end}{
+    'YYYY-MM-DD'
+  }
+  \item{time.interval}{
+    interval. 'daily' or 'weekly' or 'monthly'
   }
 }
 \details{
