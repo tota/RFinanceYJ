@@ -1,14 +1,15 @@
 quoteStockTsData <-
-function( x, since=NULL, start.num=0){
+function( x, since=NULL,start.num=0,time.interval='daily'){
   r <- NULL
   result.num <- 51
   quote.table.list <- list(NULL)
   quote.table <- NULL
   stock.data <- data.frame(NULL)
   start <- (gsub("([0-9]{4,4})-([0-9]{2,2})-([0-9]{2,2})","&c=\\1&a=\\2&b=\\3",since))
-
+  if(!any(time.interval==c('daily','weekly','monthly'))) stop("Invalid time.interval value")
+    
   while( result.num >= 51 ){
-    quote.url <- paste('http://table.yahoo.co.jp/t?s=',x,start,'&y=',start.num, sep="")
+    quote.url <- paste('http://table.yahoo.co.jp/t?s=',x,start,'&y=',start.num,'&g=',substr(time.interval,1,1),sep="")
     try( r <- xmlRoot(htmlTreeParse(quote.url, error=xmlErrorCumulator(immediate=F))) , TRUE)
     if( is.null(r) ) stop(paste("Can not access :", quote.url))
 
@@ -20,10 +21,14 @@ function( x, since=NULL, start.num=0){
     for(i in 2:end){
       tmp <- quote.table[[i]]
       if( xmlSize(tmp) < 5) next
-      
-      d <- gsub("^([0-9]{4})([^0-9]+)([0-9]{1,2})([^0-9]+)([0-9]{1,2})([^0-9]+)",
-                "\\1-\\3-\\5",
-                iconv(xmlValue(tmp[[1]]), "EUC-JP", "UTF-8", ""))
+      #data format is different between monthly and dialy or weekly
+      if(any(time.interval==c('daily','weekly'))){
+        d <- gsub("^([0-9]{4})([^0-9]+)([0-9]{1,2})([^0-9]+)([0-9]{1,2})([^0-9]+)",
+                "\\1-\\3-\\5",iconv(xmlValue(tmp[[1]]), "EUC-JP", "UTF-8", ""))
+      }else if(time.interval=='monthly'){
+        d <- gsub("^([0-9]{4})([^0-9]+)([0-9]{1,2})([^0-9]+)",
+                "\\1-\\3-1",iconv(xmlValue(tmp[[1]]),"EUC-JP","UTF-8",""))
+      }
       o <- gsub("[^0-9]", "", xmlValue(tmp[[2]]))
       h <- gsub("[^0-9]", "", xmlValue(tmp[[3]]))
       l <- gsub("[^0-9]", "", xmlValue(tmp[[4]]))
