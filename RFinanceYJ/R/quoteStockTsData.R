@@ -43,8 +43,6 @@ quoteFXTsData <- function(x, since=NULL,start.num=0,date.end=NULL,time.interval=
 quoteTsData <- function(x,function.financialproduct,since,start.num,date.end,time.interval){
   r <- NULL
   result.num <- 51
-  quote.table.list <- list(NULL)
-  quote.table <- NULL
   financial.data <- data.frame(NULL)
   start <- (gsub("([0-9]{4,4})-([0-9]{2,2})-([0-9]{2,2})","&c=\\1&a=\\2&b=\\3",since))
   end   <- (gsub("([0-9]{4,4})-([0-9]{2,2})-([0-9]{2,2})","&f=\\1&d=\\2&e=\\3",date.end))
@@ -52,15 +50,23 @@ quoteTsData <- function(x,function.financialproduct,since,start.num,date.end,tim
   if(!any(time.interval==c('daily','weekly','monthly'))) stop("Invalid time.interval value")
   
   while( result.num >= 51 ){
+    quote.table <- NULL
     quote.url <- paste('http://table.yahoo.co.jp/t?s=',x,start,end,'&y=',start.num,'&g=',substr(time.interval,1,1),sep="")
     try( r <- xmlRoot(htmlTreeParse(quote.url,error=xmlErrorCumulator(immediate=F))), TRUE)
     if( is.null(r) ) stop(paste("Can not access :", quote.url))
 
     try( quote.table <- r[[2]][[1]][[1]][[16]][[1]][[1]][[1]][[4]][[1]][[1]][[1]], TRUE )
-    if( is.null(quote.table) ) stop(paste("Can not quote :", x))
+    #
+    if( is.null(quote.table) ){
+      if( is.null(financial.data) ){
+        stop(paste("Can not quote :", x))
+      }else{
+         financial.data <- financial.data[order(financial.data$date),]
+         return(financial.data)
+      }
+    }
 
     size <- xmlSize(quote.table)
-
     for(i in 2:size){
       financial.data <- rbind(financial.data,function.financialproduct(quote.table[[i]]))
     }

@@ -8,13 +8,13 @@
     quote Japanese stock market from Yahoo!-finance-Japan
 }
 \usage{
-quoteStockTsData(x, since = NULL, start.num = 0,date.end=NULL,time.interval='daily' )
+quoteStockTsData(x, since = NULL, start.num = 0, date.end = NULL, time.interval = 'daily')
 }
 
 \arguments{
   \item{x}{
     <stock_code>.<market> ex: 4689.t
-}
+  }
   \item{since}{
     'YYYY-MM-DD' ex:'2009-01-01'
   }
@@ -22,10 +22,10 @@ quoteStockTsData(x, since = NULL, start.num = 0,date.end=NULL,time.interval='dai
     offset.  ex:50
   }
   \item{date.end}{
-    'YYYY-MM-DD'
+     'YYYY-MM-DD' ex:'2009-01-01'
   }
   \item{time.interval}{
-    interval. 'daily' or 'weekly' or 'monthly'
+    Data frequency.Possible types are 'daily','weekly', or 'monthly'.
   }
 }
 \details{
@@ -41,6 +41,7 @@ quoteStockTsData(x, since = NULL, start.num = 0,date.end=NULL,time.interval='dai
 \author{
   Yohei Sato <yokkuns@tkul.jp>
   Nobuaki Oshiro <akiaki5516@gmail.com>
+  Shinichi Takayanagi <teramonagi@gmail.com>
 }
 \note{
 
@@ -53,6 +54,8 @@ quoteStockTsData(x, since = NULL, start.num = 0,date.end=NULL,time.interval='dai
 stock <- quoteStockTsData('4689.t')
 head(stock)
 stock <- quoteStockTsData('4689.t', since='2009-01-01')
+head(stock)
+stock <- quoteStockTsData('4689.t', since='2009-01-01',time.interval='monthly')
 head(stock)
 plot(stock$date, stock$close, type="l", col="blue")
 }
