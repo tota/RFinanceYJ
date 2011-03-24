@@ -1,3 +1,5 @@
 export(quoteStockTsData)
+export(quoteStockXtsData)
+export(toXts)
 export(quoteFundTsData)
 export(quoteFXTsData)

@@ -9,7 +9,8 @@ quoteStockTsData <- function(x, since=NULL,start.num=0,date.end=NULL,time.interv
     l <- as.number(xmlValue(quote.table.item[[4]]))
     c <- as.number(xmlValue(quote.table.item[[5]]))
     v <- ifelse(xmlSize(quote.table.item) >= 6,as.number(xmlValue(quote.table.item[[6]])),0)
-    return(data.frame(date=d,open=o,height=h,low=l,close=c,volume=v))
+    a <- ifelse(xmlSize(quote.table.item) >= 7,as.number(xmlValue(quote.table.item[[7]])),0)
+    return(data.frame(date=d,open=o,height=h,low=l,close=c,volume=v, adj_close=a))
   }
   return(quoteTsData(x,function.stock,since,start.num,date.end,time.interval))
 }
