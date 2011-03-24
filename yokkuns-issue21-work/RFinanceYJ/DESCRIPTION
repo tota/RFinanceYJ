@@ -1,7 +1,7 @@
 Package: RFinanceYJ
 Type: Package
 Title: RFinanceYJ
-Version: 0.1.$Rev$
+Version: 0.1. $Rev$
 Date: 2010-01-21
 Author: Yohei Sato, Nobuaki Oshiro, Shinichi Takayanagi
 Maintainer: Yohei Sato <rfinance-dev@googlegroups.com>
