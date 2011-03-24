@@ -12,8 +12,8 @@ Japanese finance market from Yahoo!-finance-Japan
 \tabular{ll}{
 Package: \tab RFinanceYJ\cr
 Type: \tab Package\cr
-Version: \tab 0.1.5\cr
-Date: \tab 2010-07-08\cr
+Version: \tab 0.1.6\cr
+Date: \tab 2011-03-25\cr
 License: \tab BSD\cr
 LazyLoad: \tab yes\cr
 }
