@@ -8,7 +8,7 @@
     quote Japanese stock market from Yahoo!-finance-Japan
 }
 \usage{
-    stock.xts <- quoteStockXtsData(x, ...)
+quoteStockXtsData(x, ...)
 }
 
 \arguments{

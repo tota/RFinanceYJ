@@ -8,7 +8,7 @@
     convert to xts from DataFrame
 }
 \usage{
-    stock.xts <- toXts(stock.df)
+toXts(stock.df)
 }
 
 \arguments{
