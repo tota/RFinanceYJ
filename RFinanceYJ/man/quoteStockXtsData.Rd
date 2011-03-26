@@ -7,6 +7,7 @@
 \description{
     quote Japanese stock market from Yahoo!-finance-Japan
 }
+
 \usage{
 quoteStockXtsData(x, ...)
 }
@@ -14,6 +15,9 @@ quoteStockXtsData(x, ...)
 \arguments{
   \item{x}{
     <stock_code>.<market> ex: 4689.t
+  }
+  \item{...}{
+     arguments of quoteStockTsData
   }
 }
 \details{
@@ -35,7 +39,7 @@ quoteStockXtsData(x, ...)
 }
 
 \seealso{
-    quoteStockTsData
+quoteStockTsData
 }
 
 \examples{
