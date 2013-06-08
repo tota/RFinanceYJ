@@ -12,8 +12,8 @@ Japanese finance market from Yahoo!-finance-Japan
 \tabular{ll}{
 Package: \tab RFinanceYJ\cr
 Type: \tab Package\cr
-Version: \tab 0.1.6\cr
-Date: \tab 2011-03-25\cr
+Version: \tab 0.2.0\cr
+Date: \tab 2013-06-08\cr
 License: \tab BSD\cr
 LazyLoad: \tab yes\cr
 }
@@ -31,9 +31,9 @@ XML
 \examples{
 stock <- quoteStockTsData('4689.t')
 head(stock)
-stock <- quoteStockTsData('4689.t', since='2009-01-01')
+stock <- quoteStockTsData('4689.t', since='2013-01-01')
 head(stock)
-stock <- quoteStockTsData('4689.t', since='2009-01-01',time.interval='monthly')
+stock <- quoteStockTsData('4689.t', since='2013-01-01',time.interval='monthly')
 head(stock)
 plot(stock$date, stock$close, type="l", col="blue")
 }

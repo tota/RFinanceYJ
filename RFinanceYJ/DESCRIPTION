@@ -1,8 +1,8 @@
 Package: RFinanceYJ
 Type: Package
 Title: RFinanceYJ
-Version: 0.1.6
-Date: 2011-03-25
+Version: 0.2.0
+Date: 2013-06-08
 Author: Yohei Sato, Nobuaki Oshiro, Shinichi Takayanagi
 Maintainer: Yohei Sato <rfinance-dev@googlegroups.com>
 Description: Japanese stock market from Yahoo!-finance-Japan
