@@ -28,27 +28,17 @@ quoteFundTsData(x, since = NULL, start.num = 0, date.end = NULL, time.interval =
     Data frequency.Possible types are 'daily','weekly', or 'monthly'.
   }
 }
-\details{
 
-}
 \value{
   A Data frame. ( $date, $constant.value, $NAV )
 }
-\references{
 
-}
 \author{
   Yohei Sato <yokkuns@tkul.jp>
   Nobuaki Oshiro <akiaki5516@gmail.com>
   Shinichi Takayanagi <teramonagi@gmail.com>
 }
-\note{
 
-}
-
-\seealso{
-
-}
 \examples{
 fund <- quoteFundTsData("11311023")
 head(fund)

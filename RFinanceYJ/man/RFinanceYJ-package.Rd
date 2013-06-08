@@ -21,8 +21,6 @@ LazyLoad: \tab yes\cr
 \author{
 Yohei Sato <rfinance-dev@googlegroups.com>
 }
-\references{
-}
 
 \keyword{ package }
 \seealso{

@@ -28,27 +28,18 @@ quoteFXTsData(x, since = NULL, start.num = 0, date.end = NULL, time.interval = '
     Data frequency.Possible types are 'daily','weekly', or 'monthly'.
   }
 }
-\details{
 
-}
 \value{
   A Data frame. ( $date, $open, $height, $low, $close)
 }
-\references{
 
-}
 \author{
   Yohei Sato <yokkuns@tkul.jp>
   Nobuaki Oshiro <akiaki5516@gmail.com>
   Shinichi Takayanagi <teramonagi@gmail.com>
 }
-\note{
 
-}
 
-\seealso{
-
-}
 \examples{
 fx <- quoteFXTsData("USDJPY=X")
 head(fx)

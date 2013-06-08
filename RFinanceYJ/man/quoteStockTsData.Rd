@@ -28,34 +28,24 @@ quoteStockTsData(x, since = NULL, start.num = 0, date.end = NULL, time.interval 
     Data frequency.Possible types are 'daily','weekly', or 'monthly'.
   }
 }
-\details{
 
-}
 \value{
   A Data frame. ( $date, $open, $height, $low, $close, $volume )
   
 }
-\references{
 
-}
 \author{
   Yohei Sato <yokkuns@tkul.jp>
   Nobuaki Oshiro <akiaki5516@gmail.com>
   Shinichi Takayanagi <teramonagi@gmail.com>
 }
-\note{
 
-}
-
-\seealso{
-
-}
 \examples{
 stock <- quoteStockTsData('4689.t')
 head(stock)
-stock <- quoteStockTsData('4689.t', since='2009-01-01')
+stock <- quoteStockTsData('4689.t', since='2009-01-01',date.end='2009-12-31')
 head(stock)
-stock <- quoteStockTsData('4689.t', since='2009-01-01',time.interval='monthly')
+stock <- quoteStockTsData('4689.t', since='2009-01-01',date.end='2009-12-31',time.interval='monthly')
 head(stock)
 plot(stock$date, stock$close, type="l", col="blue")
 }

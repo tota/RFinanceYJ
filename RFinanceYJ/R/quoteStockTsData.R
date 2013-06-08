@@ -1,5 +1,5 @@
 #API
-quoteStockTsData <- function(x, since=NULL,start.num=0,date.end=NULL,time.interval='d')
+quoteStockTsData <- function(x, since=NULL,start.num=0,date.end=NULL,time.interval='daily')
 {
   time.interval <- substr(time.interval,1,1)
   function.stock <- function(quote.table.item){
@@ -13,9 +13,9 @@ quoteStockTsData <- function(x, since=NULL,start.num=0,date.end=NULL,time.interv
     a <- ifelse(xmlSize(quote.table.item) >= 7,as.number(xmlValue(quote.table.item[[7]])),0)
     return(data.frame(date=d,open=o,high=h,low=l,close=c,volume=v, adj_close=a))
   }
-  return(quoteTsData(x,function.stock,since,start.num,date.end,time.interval))
+  return(quoteTsData(x,function.stock,since,start.num,date.end,time.interval,type="stock"))
 }
-quoteFundTsData <- function(x, since=NULL,start.num=0,date.end=NULL,time.interval='d')
+quoteFundTsData <- function(x, since=NULL,start.num=0,date.end=NULL,time.interval='daily')
 {
   time.interval <- substr(time.interval,1,1)
   function.fund <- function(quote.table.item){
@@ -27,9 +27,9 @@ quoteFundTsData <- function(x, since=NULL,start.num=0,date.end=NULL,time.interva
     v <- as.number(xmlValue(quote.table.item[[3]]))
     return(data.frame(date=d,constant.value=c,NAV=v))
   }
-  return(quoteTsData(x,function.fund,since,start.num,date.end,time.interval))
+  return(quoteTsData(x,function.fund,since,start.num,date.end,time.interval,type="fund"))
 }
-quoteFXTsData <- function(x, since=NULL,start.num=0,date.end=NULL,time.interval='d')
+quoteFXTsData <- function(x, since=NULL,start.num=0,date.end=NULL,time.interval='daily')
 {
   time.interval <- substr(time.interval,1,1)
   function.fx <- function(quote.table.item){
@@ -40,11 +40,11 @@ quoteFXTsData <- function(x, since=NULL,start.num=0,date.end=NULL,time.interval=
     c <- as.number(xmlValue(quote.table.item[[5]]))
     return(data.frame(date=d,open=o,height=h,low=l,close=c))
   }
-  return(quoteTsData(x,function.fx,since,start.num,date.end,time.interval))
+  return(quoteTsData(x,function.fx,since,start.num,date.end,time.interval,type="fx"))
 }
 ######  private functions  #####
 #get time series data from Yahoo! Finance.
-quoteTsData <- function(x,function.financialproduct,since,start.num,date.end,time.interval){
+quoteTsData <- function(x,function.financialproduct,since,start.num,date.end,time.interval,type="stock"){
   r <- NULL
   result.num <- 51
   financial.data <- data.frame(NULL)
@@ -55,6 +55,16 @@ quoteTsData <- function(x,function.financialproduct,since,start.num,date.end,tim
 
   if(!any(time.interval==c('d','w','m'))) stop("Invalid time.interval value")
   
+  extractQuoteTable <- function(r,type){
+    if(type %in% c("fund","fx")){
+      tbl <- r[[2]][[2]][[7]][[3]][[3]][[9]][[2]]
+    }
+    else{
+      tbl <- r[[2]][[2]][[7]][[3]][[3]][[10]][[2]]
+    }
+    return(tbl)
+  }
+  
   while( result.num >= 51 ){
     quote.table <- NULL
     quote.url <- paste('http://info.finance.yahoo.co.jp/history/?code=',x,start,end,'&p=',start.num,'&tm=',substr(time.interval,1,1),sep="")
@@ -63,7 +73,7 @@ quoteTsData <- function(x,function.financialproduct,since,start.num,date.end,tim
     if( is.null(r) ) stop(paste("Can not access :", quote.url))
 
     #try( quote.table <- r[[2]][[1]][[1]][[16]][[1]][[1]][[1]][[4]][[1]][[1]][[1]], TRUE )
-    try( quote.table <- r[[2]][[2]][[7]][[3]][[3]][[10]][[2]], TRUE )
+    try( quote.table <- extractQuoteTable(r,type), TRUE )
     
     if( is.null(quote.table) ){
       if( is.null(financial.data) ){
