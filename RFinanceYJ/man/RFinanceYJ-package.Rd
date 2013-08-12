@@ -13,8 +13,8 @@ Japanese finance market from Yahoo!-finance-Japan
 Package: \tab RFinanceYJ\cr
 Type: \tab Package\cr
 Version: \tab 0.2.1\cr
-Date: \tab 2013-06-08\cr
-License: \tab BSD\cr
+Date: \tab 2013-08-12\cr
+License: \tab BSD 3-clause License\cr
 LazyLoad: \tab yes\cr
 }
 }
