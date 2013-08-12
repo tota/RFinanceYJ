@@ -41,8 +41,10 @@ quoteFXTsData(x, since = NULL, start.num = 0, date.end = NULL, time.interval = '
 
 
 \examples{
+\dontrun{
 fx <- quoteFXTsData("USDJPY=X")
 head(fx)
 fx <- quoteFXTsData("USDJPY=X",since="2009-01-01",date.end="2010-05-31",time.interval="monthly")
 head(fx)
+}
 }

@@ -40,8 +40,10 @@ quoteFundTsData(x, since = NULL, start.num = 0, date.end = NULL, time.interval =
 }
 
 \examples{
+\dontrun{
 fund <- quoteFundTsData("11311023")
 head(fund)
 fund <- quoteFundTsData("11311023",since="2009-01-01",date.end="2010-05-31",time.interval="monthly")
 head(fund)
+}
 }
