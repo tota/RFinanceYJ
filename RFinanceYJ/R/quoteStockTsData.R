@@ -57,10 +57,10 @@ quoteTsData <- function(x,function.financialproduct,since,start.num,date.end,tim
   
   extractQuoteTable <- function(r,type){
     if(type %in% c("fund","fx")){
-      tbl <- r[[2]][[2]][[7]][[3]][[3]][[9]][[2]]
+      tbl <- r[[2]][[2]][[7]][[3]][[3]][[8]][[2]]
     }
     else{
-      tbl <- r[[2]][[2]][[7]][[3]][[3]][[10]][[2]]
+      tbl <- r[[2]][[2]][[7]][[3]][[3]][[11]][[2]]
     }
     return(tbl)
   }
