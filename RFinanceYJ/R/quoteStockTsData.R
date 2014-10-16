@@ -48,33 +48,20 @@ quoteTsData <- function(x,function.financialproduct,since,start.num,date.end,tim
   r <- NULL
   result.num <- 51
   financial.data <- data.frame(NULL)
-  #start <- (gsub("([0-9]{4,4})-([0-9]{2,2})-([0-9]{2,2})","&c=\\1&a=\\2&b=\\3",since))
-  #end   <- (gsub("([0-9]{4,4})-([0-9]{2,2})-([0-9]{2,2})","&f=\\1&d=\\2&e=\\3",date.end))
   start <- (gsub("([0-9]{4,4})-([0-9]{2,2})-([0-9]{2,2})","&sy=\\1&sm=\\2&sd=\\3",since))
   end   <- (gsub("([0-9]{4,4})-([0-9]{2,2})-([0-9]{2,2})","&ey=\\1&em=\\2&ed=\\3",date.end))
 
   if(!any(time.interval==c('d','w','m'))) stop("Invalid time.interval value")
-  
-  extractQuoteTable <- function(r,type){
-    if(type %in% c("fund","fx")){
-      tbl <- r[[2]][[2]][[7]][[3]][[3]][[9]][[2]]
-    }
-    else{
-      tbl <- r[[2]][[2]][[7]][[3]][[3]][[10]][[2]]
-    }
-    return(tbl)
-  }
   
   while( result.num >= 51 ){
     start.num <- start.num + 1
     quote.table <- NULL
     quote.url <- paste('http://info.finance.yahoo.co.jp/history/?code=',x,start,end,'&p=',start.num,'&tm=',substr(time.interval,1,1),sep="")
   
-    try( r <- xmlRoot(htmlTreeParse(quote.url,error=xmlErrorCumulator(immediate=F))), TRUE)
+    try( r <- htmlParse(quote.url) )
     if( is.null(r) ) stop(paste("Can not access :", quote.url))
 
-    #try( quote.table <- r[[2]][[1]][[1]][[16]][[1]][[1]][[1]][[4]][[1]][[1]][[1]], TRUE )
-    try( quote.table <- extractQuoteTable(r,type), TRUE )
+    try( quote.table <- xpathApply(r,"//table")[[2]], TRUE )
     
     if( is.null(quote.table) ){
       if( is.null(financial.data) ){
@@ -119,6 +106,4 @@ endOfMonth <- function(date.obj)
   startOfNextMonth <- as.Date(format(startOfMonth+31,"%Y%m01"),"%Y%m%d")
   return(startOfNextMonth-1)
 }
-
-
 
